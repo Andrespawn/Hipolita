@@ -1,0 +1,79 @@
+
+.contenido{
+	min-width: 400px;
+	min-height: 350px;
+	width: auto;
+	height: auto;
+	background-color: #9e9e9e5c;
+	border-radius: 25px;
+    padding-top: 5%;
+    align-content: center;    
+}
+
+.imgLogin{
+	min-width: 100px;
+	min-height: 50px;
+	width: auto;
+	height: auto;
+	max-height: 200px;
+    max-width: 300px;
+    
+    padding:2px;
+    cursor:pointer;
+    display:block;
+    width:290px;
+    margin: 0 auto;
+    text-align:left;
+}
+
+.txtUser{
+	width: auto;
+	    
+    padding:2px;
+    cursor:pointer;
+    display:block;
+    width:290px;
+    margin: 0 auto;
+    text-align:center;
+}
+
+.txtPass{
+	width: auto;
+    
+    padding:2px;
+    cursor:pointer;
+    display:block;
+    width:290px;
+    margin: 0 auto;
+    text-align:center;
+}
+
+form
+{
+   padding:2px;
+   cursor:pointer;
+   display:block;
+   width:290px;
+   margin: 0 auto;
+   text-align:center;
+}   
+
+.btnAceptar{
+    
+    padding:2px;
+    cursor:pointer;
+    display:block;
+    width:290px;
+    margin: 0 auto;
+    text-align:center;
+    
+}
+
+.alertMsg{
+    width:400px;
+    padding:2px;
+    cursor:pointer;
+    display:block;
+    margin: 0 auto;
+    text-align:center;
+}
