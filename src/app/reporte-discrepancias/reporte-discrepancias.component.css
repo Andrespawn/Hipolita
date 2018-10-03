@@ -57,3 +57,26 @@ li.dropdownn {
 .dropdownn:hover .dropdownn-content {
     display: block;
 }
+
+
+/**/
+.contenerdor {
+    padding-top: 2%;
+}
+
+form {
+    padding: 2px;
+    cursor: pointer;
+    display: block;
+    width: 650px;
+    margin: 0 auto;
+}
+.btnBuscar {
+    padding: 2px;
+    cursor: pointer;
+    display: block;
+    width: 300px;
+    ;
+    margin: 0 auto;
+    text-align: center;
+}

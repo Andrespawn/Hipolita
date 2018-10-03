@@ -12,4 +12,17 @@ export class ReporteDiscrepanciasComponent implements OnInit {
   ngOnInit() {
   }
 
+  generarReporte(event) {
+    event.preventDefault();
+    const target = event.target;
+    
+    const fechIni: Date = target.querySelector('#txtFechIni').value;
+    const fechFin: Date = target.querySelector('#txtFechFin').value;
+    
+
+    console.log("fechIni: "+fechIni);
+    console.log("fechFin: "+fechFin);
+
+  }
+
 }
