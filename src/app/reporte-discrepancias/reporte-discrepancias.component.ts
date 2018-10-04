@@ -29,20 +29,20 @@ export class ReporteDiscrepanciasComponent implements OnInit {
     console.log("fechFin: " + fechaFin);
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'SOrigenCliente': 'a',
-      'Scanal': 'a',
-      'SUsuario': 'a',
       'Ocp-Apim-Subscription-Key': '5a14178462d24ca39fc93398ee444a91',
       'Ocp-Apim-Trace':'true',
       'Cache-Control':'no-cache',
+      'Content-Type': 'application/json',
+      'SUsuario': 's',
+      'SOrigenCliente': 'a',
+      'Scanal': 'w',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
     });
 
 
     console.log(headers.get('Ocp-Apim-Subscription-Key'));
-    const body: String = '"Query": { "Date_start":"2018-08-31", "Date_end":"2018-09-01" } ';
+    const body: String = '{"Query": { "Date_start":"2018-08-31", "Date_end":"2018-09-01" } }';
     // const json = JSON.stringify(body);
     console.log("Body: " + body);
     //return this.httpClient.post('http://172.20.6.6:8184/cxf/reporteDiscrepancia', body, { headers }).subscribe(
