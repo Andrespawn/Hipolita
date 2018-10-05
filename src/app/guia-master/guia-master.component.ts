@@ -90,6 +90,8 @@ export class GuiaMasterComponent implements OnInit {
   }
 
   getSelectGuiaMaster(uss, isChecked) {
+    console.log(uss);
+    console.log(isChecked);
     if (isChecked) {
       this.listGuias.push(uss);
     } else {
@@ -147,10 +149,16 @@ export class GuiaMasterComponent implements OnInit {
 
   actualizarGuias(event) {
     event.preventDefault();
+    this.mensajeAlertaMawb = "";
+    this.mostrarMensajeMawb = false;
+
     const target = event.target;
     const nroMawb = target.querySelector('#txtNroMawb').value;
     const fechMawb: Date = target.querySelector('#txtFechMawb').value;
+    
     const validacionCampos = this.validarCamposMawb(nroMawb, fechMawb);
+
+    
 
     if (validacionCampos) {
       this.consumirServiciodos(nroMawb, fechMawb);
@@ -212,12 +220,12 @@ export class GuiaMasterComponent implements OnInit {
         this.mensajeSuccessMawb = "";
         this.mostrarMenSuccessMawb = false;
         this.mostrarBtnMAWB = false;
-        
+
 
         console.log("error ", error);
         this.mensajeErrorMawb = error.message;
         this.mostrarMenErrorMawb = true;
-        
+
         this.modalService.dismissAll();
       }
     );
@@ -231,6 +239,8 @@ export class GuiaMasterComponent implements OnInit {
   closeResult: string;
 
   open(content) {
+    this.mensajeAlertaMawb = "";
+    this.mostrarMensajeMawb = false;
     event.preventDefault();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
