@@ -17,12 +17,14 @@ export class GuiaMasterComponent implements OnInit {
   mensajeAlerta: String = '';
   mensajeAlertaMawb: String = '';
   mensajeSuccessMawb: String = '';
+  mensajeErrorMawb: String = '';
 
   mostrarMensaje: Boolean = false;
   mostrarTbl: Boolean = false;
   mostrarBtnMAWB: Boolean = false;
   mostrarMensajeMawb: Boolean = false;
   mostrarMenSuccessMawb: Boolean = false;
+  mostrarMenErrorMawb: Boolean = false;
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal) {
 
@@ -37,6 +39,7 @@ export class GuiaMasterComponent implements OnInit {
     this.mensajeAlerta = "";
     this.mensajeAlertaMawb = "";
     this.mensajeSuccessMawb = "";
+    this.mensajeErrorMawb = "";
     this.mostrarMensaje = false;
     this.mostrarTbl = false;
     this.mostrarBtnMAWB = false;
@@ -68,8 +71,8 @@ export class GuiaMasterComponent implements OnInit {
     };
 
     var json = JSON.stringify(body);
-    this.httpClient.post('http://172.20.6.6:8185/cxf/AsignarGuiaMaster/AsignarGuiaMaster', json, {   
-   // this.httpClient.post('https://avapimgmtexpqa.azure-api.net/GuiaMaster/AsignarGuiaMaster/AsignarGuiaMaster', json, {
+    this.httpClient.post('http://172.20.6.6:8185/cxf/AsignarGuiaMaster/AsignarGuiaMaster', json, {
+      // this.httpClient.post('https://avapimgmtexpqa.azure-api.net/GuiaMaster/AsignarGuiaMaster/AsignarGuiaMaster', json, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'http://localhost:4200', 'Content-Type': 'application/json' })
     }).subscribe(
       data => {
@@ -87,6 +90,8 @@ export class GuiaMasterComponent implements OnInit {
   }
 
   getSelectGuiaMaster(uss, isChecked) {
+    console.log(uss);
+    console.log(isChecked);
     if (isChecked) {
       this.listGuias.push(uss);
     } else {
@@ -144,10 +149,16 @@ export class GuiaMasterComponent implements OnInit {
 
   actualizarGuias(event) {
     event.preventDefault();
+    this.mensajeAlertaMawb = "";
+    this.mostrarMensajeMawb = false;
+
     const target = event.target;
     const nroMawb = target.querySelector('#txtNroMawb').value;
     const fechMawb: Date = target.querySelector('#txtFechMawb').value;
+    
     const validacionCampos = this.validarCamposMawb(nroMawb, fechMawb);
+
+    
 
     if (validacionCampos) {
       this.consumirServiciodos(nroMawb, fechMawb);
@@ -175,8 +186,9 @@ export class GuiaMasterComponent implements OnInit {
     var json = JSON.stringify(body);
 
     this.httpClient.post('http://172.20.6.6:8185/cxf/AsignarGuiaMaster/AsignarGuiaMaster', json, {
-  //  this.httpClient.post('https://avapimgmtexpqa.azure-api.net/GuiaMaster/AsignarGuiaMaster/AsignarGuiaMaster', json, {
-    //  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'https://azrav-webapp-tst28.azurewebsites.net', 'Content-Type': 'application/json' })
+      //  this.httpClient.post('https://avapimgmtexpqa.azure-api.net/GuiaMaster/AsignarGuiaMaster/AsignarGuiaMaster', json, {
+      //  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'https://azrav-webapp-tst28.azurewebsites.net', 'Content-Type': 'application/json' })
+      //headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'http://localhost:4200', 'Content-Type': 'application/json' })
     }).subscribe(
       data => {
         this.mensajeAlerta = "";
@@ -191,11 +203,30 @@ export class GuiaMasterComponent implements OnInit {
         this.mensajeSuccessMawb = "Guia(s) Actualizada(s)";
         this.mostrarMenSuccessMawb = true;
         this.mostrarBtnMAWB = false;
+        this.mostrarMenErrorMawb = false;
 
         this.modalService.dismissAll();
       },
       error => {
+        this.mensajeAlerta = "";
+        this.mensajeAlertaMawb = "";
+
+        this.mostrarMensaje = false;;
+        this.mostrarTbl = false;
+        this.mostrarBtnMAWB = false;
+        this.mostrarMensajeMawb = false;
+
+        this.guias = null;
+        this.mensajeSuccessMawb = "";
+        this.mostrarMenSuccessMawb = false;
+        this.mostrarBtnMAWB = false;
+
+
         console.log("error ", error);
+        this.mensajeErrorMawb = error.message;
+        this.mostrarMenErrorMawb = true;
+
+        this.modalService.dismissAll();
       }
     );
 
@@ -203,20 +234,22 @@ export class GuiaMasterComponent implements OnInit {
 
   /************/
 
- 
+
 
   closeResult: string;
 
   open(content) {
+    this.mensajeAlertaMawb = "";
+    this.mostrarMensajeMawb = false;
     event.preventDefault();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    
+
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

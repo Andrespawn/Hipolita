@@ -1,87 +1,80 @@
-/*ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+/*Begin Estilos NavBar*/
+    @media(max-width:768px){
+        .navbarPadre{
+    width: 100%;
+    }
+
+    }
+
+    @media(max-width:480px){
+    .navbarPadre{
+    width: 100%;
+    }
+    }
+    /*Es el tilo de la barra padre*/
+    .navbarPadre {
     overflow: hidden;
     background-color: #da291c;
-}
+    font-family: Arial, Helvetica, sans-serif;
+    }
 
-li {
+    .navbarPadre a {
     float: left;
-}
-
-li a {
-    display: block;
+    font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
+    }
 
-li a:hover {
-    background-color: #ffffff;
-    color: black;
-    border: solid 1px black;
-}*/
-
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #da291c;
-    width: 650px;
-
-    padding:2px;
-   cursor:pointer;
-   display:block;
-   margin: 0 auto;
-   
-    
-}
-
-li {
+    .desplegable {
     float: left;
-    
-}
+    overflow: hidden;
+    }
 
-li a, .dropbtn {
-    display: inline-block;
-    color: #ffffff;
-    text-align: center;
+    .desplegable .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
     padding: 14px 16px;
-    text-decoration: none;
-}
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    }
 
-li a:hover, .dropdown:hover .dropbtn {
+    /*Cuando se pasa el cursor sobre algun menu toma este color*/
+    .navbarPadre a:hover, .desplegable:hover .dropbtn {
     background-color: #CFCFCF;
-    color: #000000;
-}
+    color: black;
+    }
 
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
+    /*Estilos del menu hijo*/
+    .desplegado-contenido {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}
+    }
 
-.dropdown-content a {
+    .desplegado-contenido a {
+    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
-}
+    }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+    /*Estilos del menu hijo cuando paso el cursor sobre el*/
+    .desplegado-contenido a:hover {
+    background-color: #f1f1f1;
+    color: black;
+    }
 
-.dropdown:hover .dropdown-content {
+    .desplegable:hover .desplegado-contenido {
     display: block;
-}
+    }
+/*End Estilos NavBar*/
