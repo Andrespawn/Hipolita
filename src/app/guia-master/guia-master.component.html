@@ -74,8 +74,20 @@
         </div>
 
         <div *ngIf="mostrarMenSuccessMawb">
-            <div class="alert alert-danger" role="alert" style="text-align: center">
+            <div class="alert alert-success" role="alert" style="text-align: center">
                 {{mensajeSuccessMawb}}
+            </div>
+        </div>
+
+
+        <div *ngIf="mostrarMenErrorMawb">
+            <div class="alert alert-danger " role="alert" style="text-align: center">
+
+                <strong>Error al guardar el MAWB: </strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{mensajeErrorMawb}}
+                </div>
             </div>
         </div>
 
@@ -118,11 +130,7 @@
             <input type="submit" value="Asignar MAWB" class="btn-info" (click)="open(content)">
 
         </div>
-
-
     </form>
-
-
 
     <ng-template #content let-modal>
         <div class="modal-header">
@@ -131,7 +139,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form (submit)="actualizarGuias($event)">
+        <form (submit)="actualizarGuias($event)" class="formModal">
             <h4>Asignación Guía Master</h4>
             <div *ngIf="mostrarMensajeMawb">
                 <div class="alert alert-danger" role="alert" style="text-align: center">
@@ -139,16 +147,10 @@
                 </div>
             </div>
 
-
-
             <input type="text" placeholder="Nro de MAWB" id="txtNroMawb" name="txtNroMawb" class="form-control">
 
             <input type="text" placeholder="Fecha de MAWB" name="txtFechMawb" id="txtFechMawb" class="form-control"
                 bsDatepicker [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
-
-
-
-
 
             <input type="submit" value="Guardar MAWB" class="btn-primary ">
 

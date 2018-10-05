@@ -63,12 +63,46 @@
     <!--<router-outlet></router-outlet>-->
     <form (submit)="buscarRuta($event)">
         <h4>Documento Declaración importación</h4>
+
+        <div *ngIf="mostrarMensajeValidacionForm">
+            <div class="alert alert-warning " role="alert" style="text-align: center">
+
+                <strong>¡Advertencia!</strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{mensajeAlertaValidacionForm}}
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="mostrarMensajeErrorService">
+            <div class="alert alert-danger " role="alert" style="text-align: center">
+
+                <strong>¡Error al consumir servicio!</strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{mensajeAlertaErrorService}}
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="verError">
+            <div class="alert alert-danger " role="alert" style="text-align: center">
+
+                <strong>¡Error al consumir servicio!</strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{msgError}}
+                </div>
+            </div>
+        </div>
+
         <input type="text" placeholder="Fecha Ingreso" name="txtDate" id="txtDate" class="form-control" bsDatepicker
             [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
 
         <input type="text" placeholder="Nro documento importacion" id="nroDocImport" id="nroDocImport" class="form-control">
 
-        <input type="text" placeholder="Nro shipments" id="nroShipment" id="nroShipment" class="form-control">
+        <input type="text" placeholder="Nro guía alertan" id="nroGuiaAlert" id="nroGuiaAlert" class="form-control">
 
         <input type="submit" value="Generar Doc" class="btn-primary ">
 

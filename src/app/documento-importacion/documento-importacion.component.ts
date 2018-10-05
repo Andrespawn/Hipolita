@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentService } from './document.service';
+import { error } from '@angular/compiler/src/util';
+import { isError } from 'util';
+import { ifError } from 'assert';
 
 
 @Component({
@@ -9,33 +12,68 @@ import { DocumentService } from './document.service';
 })
 export class DocumentoImportacionComponent implements OnInit {
 
-  mostrarMensaje: Boolean = false;
-  mensajeAlerta: String = '';
+  mostrarMensajeValidacionForm: Boolean = false;
+  mostrarMensajeErrorService: Boolean = false;
+
+  mensajeAlertaValidacionForm: String = '';
+  mensajeAlertaErrorService: String = '';
+
+
   constructor(private documentService: DocumentService) {
-   }
+  }
 
   ngOnInit() {
   }
   buscarRuta(event) {
     event.preventDefault();
 
-    this.mostrarMensaje = false;
+    this.mostrarMensajeValidacionForm = false;
+
     const target = event.target;
+
     const fechadoc: Date = target.querySelector('#txtDate').value;
-    const nroGuia = target.querySelector('#nroShipment').value;
+    const nroGuia = target.querySelector('#nroGuiaAlert').value;
     const nroDocImport = target.querySelector('#nroDocImport').value;
-    const validar =  this.validarCampos(nroDocImport, nroGuia, fechadoc);
-    if (validar) {
+
+    const validarForm = this.validarCampos(nroDocImport, nroGuia, fechadoc);
+
+    if (validarForm) {
       this.documentService.getData();
     }
   }
+
   validarCampos(NroImportacion, nroG, fecfecha, ) {
+    this.mensajeAlertaValidacionForm = '';
     if (NroImportacion === '' && fecfecha === '' && nroG === '') {
-      this.mensajeAlerta = 'Debe diligenciar el numero de guia o las fechas a consultar. ';
-      this.mostrarMensaje = true;
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar la fecha de ingreso, número guía alertan y número documento importación. ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion != '' && fecfecha === '' && nroG === '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar la fecha de ingreso y número guía alertan . ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion === '' && fecfecha != '' && nroG === '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar el número guía alertan y número documento importación. ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion === '' && fecfecha === '' && nroG != '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar la fecha de ingreso y número documento importación. ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion != '' && fecfecha === '' && nroG != '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar la fecha de ingreso. ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion === '' && fecfecha != '' && nroG != '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar el número documento importación. ';
+      this.mostrarMensajeValidacionForm = true;
+      return false;
+    } else if (NroImportacion != '' && fecfecha != '' && nroG === '') {
+      this.mensajeAlertaValidacionForm = 'Debe diligenciar el número guía alertan. ';
+      this.mostrarMensajeValidacionForm = true;
       return false;
     } else {
-      this.mostrarMensaje = false;
+      this.mostrarMensajeValidacionForm = false;
       return true;
     }
   }
