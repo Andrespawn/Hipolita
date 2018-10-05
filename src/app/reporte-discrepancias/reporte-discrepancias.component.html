@@ -69,50 +69,37 @@
 
     <form (submit)="generarReporte($event)">
         <h4>Reporte Discrepancias</h4>
-        <input type="text" placeholder="Fecha Inicio" name="txtFechIni" id="txtFechIni" class="form-control"
-        bsDatepicker [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
 
-        <input type="text" placeholder="Fecha Fin" name="txtFechFin" id="txtFechFin" class="form-control"
-        bsDatepicker [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
+        <div *ngIf="mostrarMensajeValidacion">
+            <div class="alert alert-warning " role="alert" style="text-align: center">
+
+                <strong>¡Advertencia!</strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{mensajeValidacion}}
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="mostrarMensajeErrorService">
+            <div class="alert alert-danger " role="alert" style="text-align: center">
+
+                <strong>¡Error al consumir servicio!</strong>
+                <br>
+                <div style="font-size: 13px;">
+                    {{mensajeErrorService}}
+                </div>
+            </div>
+        </div>
+
+        <input type="text" placeholder="Fecha Inicio" name="txtFechIni" id="txtFechIni" class="form-control"
+            bsDatepicker [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
+
+        <input type="text" placeholder="Fecha Fin" name="txtFechFin" id="txtFechFin" class="form-control" bsDatepicker
+            [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
 
         <input type="submit" value="Generar reporte" class="btn-primary ">
     </form>
-    
-    <!--<div class="contenerdor">
-
-        <form (submit)="generarReporte($event)" align="center" class="form-horizontal">
-            <h1>Reporte dispersión</h1>
-            <br>
-            <div class="row">
-                <div class="col-lg-4" align="left">
-                    <label class="col-md-10 control-label">Fecha inicio:</label>
-                </div>
-                <div class="col-lg-4">
-                    <input type="text" id="txtFechIni" autofocus class="form-control input-md " bsDatepicker
-                        [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
-                </div>
-
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-lg-4" align="left">
-                    <label class="col-md-10 control-label">Fecha fin:</label>
-                </div>
-                <div class="col-lg-4">
-                    <input type="text" id="txtFechFin" autofocus class="form-control input-md " bsDatepicker
-                        [bsConfig]="{containerClass:'theme-red',dateInputFormat: 'YYYY/MM/DD'}" pattern="[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])">
-                </div>
-
-            </div>
-
-            <br>
-            <div class="row" align="center">
-                <div class="col-lg-4" style="padding-left:12%;">
-                    <input type="submit" value="Generar reporte" class="btn btn-info btnBuscar">
-                </div>
-            </div>
-        </form>
-    </div>-->
 
 </body>
 
