@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentService } from './document.service';
+// import { FTPServiceService} from '../Services/ftpservice.service'
 
 
 @Component({
@@ -11,7 +12,7 @@ export class DocumentoImportacionComponent implements OnInit {
 
   mostrarMensaje: Boolean = false;
   mensajeAlerta: String = '';
-  constructor(private documentService: DocumentService) {
+  constructor(private documentService: DocumentService ) {
    }
 
   ngOnInit() {
@@ -27,10 +28,11 @@ export class DocumentoImportacionComponent implements OnInit {
     const validar =  this.validarCampos(nroDocImport, nroGuia, fechadoc);
     if (validar) {
       this.documentService.getData();
+      // this.ftpService.getData();
     }
   }
   validarCampos(NroImportacion, nroG, fecfecha, ) {
-    if (NroImportacion === '' && fecfecha === '' && nroG === '') {
+    if (NroImportacion === '' || fecfecha === '' || nroG === '') {
       this.mensajeAlerta = 'Debe diligenciar el numero de guia o las fechas a consultar. ';
       this.mostrarMensaje = true;
       return false;
