@@ -5,9 +5,10 @@
     <title>Documento importación</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -16,45 +17,53 @@
         crossorigin="anonymous"></script>
 
 
-
 </head>
 
 <body>
-    <ul>
-        <li class="dropdownn">
-            <a href="javascript:void(0)" class="dropbtn">Guia Master</a>
-            <div class="dropdownn-content">
-                <a routerLink="/guiaMaster">GuiaMaster</a>
+    <div class="navbarPadre">
+        <a routerLink="/pantallainicio">Inicio</a>
+        <div class="desplegable">
+            <button class="dropbtn">Guía Master
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="desplegado-contenido">
+                <a routerLink="/guiaMaster">Guía Master</a>
                 <a routerLink="/manifiestoAduanas">Manifiesto Aduanas</a>
             </div>
-        </li>
-        <li class="dropdownn">
-            <a href="javascript:void(0)" class="dropbtn">Documento Importar</a>
-            <div class="dropdownn-content">
+        </div>
+        <div class="desplegable">
+            <button class="dropbtn">Documento Importar
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="desplegado-contenido">
                 <a routerLink="/documentoImportacion">Documento Importacion</a>
             </div>
-        </li>
-        <li class="dropdownn">
-            <a href="javascript:void(0)" class="dropbtn">Impresion Etiqueta</a>
-            <div class="dropdownn-content">
+        </div>
+        <div class="desplegable">
+            <button class="dropbtn">Impresion Etiqueta
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="desplegado-contenido">
                 <a routerLink="/impresionEtiqueta">Impresion Etiqueta</a>
             </div>
-        </li>
-        <li class="dropdownn">
-            <a href="javascript:void(0)" class="dropbtn">Facturación</a>
-            <div class="dropdownn-content">
+        </div>
+        <div class="desplegable">
+            <button class="dropbtn">Facturación
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="desplegado-contenido">
                 <a routerLink="/facturacion">Facturación</a>
             </div>
-        </li>
-        <li class="dropdownn">
-            <a href="javascript:void(0)" class="dropbtn">Reportes</a>
-            <div class="dropdownn-content">
+        </div>
+        <div class="desplegable">
+            <button class="dropbtn">Reportes
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="desplegado-contenido">
                 <a routerLink="/reporteDiscrepancias">Reporte Discrepancias</a>
             </div>
-        </li>
-
-    </ul>
-    <router-outlet></router-outlet>
+        </div>
+    </div>
 
 
 
